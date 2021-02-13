@@ -8,9 +8,38 @@
 	box-sizing: border-box;
 	overflow: hidden;
 }
+html{
+	overflow-y: scroll
+}
 body{
 	background: #E5E5E5;
 	font-family: Gilroy;
+	position: relative;
+	z-index: 0;
+}
+@mixin header_title{
+	font-size: 18px;
+	border-radius: 10px;
+	border: 0px;
+	margin-bottom: 9px;
+	background-color: #ffffff;
+	height: 67px;
+	width: 270px;
+	display: block;
+	text-align: center;
+	padding-top: 20px;
+	font-weight: bold;
+}
+.trash-btn{
+	width: 18px;
+	height: 18px;
+	background: url("../images/icon-trash-can-black.svg");
+	margin-right: 5px;
+
+	&:hover{
+		background: url("../images/icon-trash-can-red.svg");
+		cursor: pointer;
+	}
 }
 header{
 	background: #ffffff;
@@ -89,14 +118,17 @@ header{
 }
 .site-content-wrapper{
 	margin-top: 20px;
-	
+
 	.site-content-container{
 		padding-left: 40px;
 		margin-top: 5px;
 		display: flex;
-
+		flex-direction: row;
+		flex-wrap: wrap;
+	
 		.task-group-list{
 			margin-right: 15px;
+			margin-bottom: 25px;
 			width:310px;
 			border-radius: 10px;
 			div{
@@ -105,21 +137,16 @@ header{
 
 			.task-group-list__title-container{
 				margin-bottom: 10px;
-				padding-bottom: 20px;
-				display: flex;
-				justify-content: space-between;
 				width: 100%;
-				padding-left:25px; 
-				padding-right: 35px;
+				height: 67px;
+				padding-top: 20px;
 				background-color: #ffffff;
 				border-radius: 10px;
-				h1{
+				text-align: center;
+				span{
 					margin-top: 25px;
-					font-size: 18px;	
-				}
-				img{
-					height: 16px;
-					margin-top: 29px;
+					font-size: 18px;
+					font-weight: bold;	
 				}
 			}
 			.task-group-list__add-group-btn{
@@ -172,45 +199,50 @@ header{
 		}
 		.quest-list{
 			margin-right: 15px;
+			margin-bottom: 25px;
 			width: 300px;
 			height: 450px;
 			position: relative;
 			border-radius: 10px;
+			// display: none;
 
 			.quest-list__header{
 				margin-bottom: 10px;
-				padding-bottom: 20px;
-				display: flex;
-				justify-content: space-between;
 				width: 100%;
-				padding-left:25px; 
-				padding-right: 35px;
+				padding-left: 25px; 
+				padding-right: 25px;
 				background-color: #ffffff;
 				border-radius: 10px;
-				h1{
-					margin-top: 25px;
-					font-size: 18px;	
+				height: 67px;
+				text-align: center;
+				position: relative;
+					.quest-name{
+						font-size: 18px;
+						font-weight: bold;
+						width: 250px;
+						padding: 12px 5px;
+						margin-top: 8px;
+						margin-bottom: 8px;
+					}
+					img{
+						height: 25px;
+						position: absolute;
+						right: 10px;
+						top: 18px;
+					}
 				}
-				img{
-					height: 16px;
-					margin-top: 29px;
-				}
-			}
 			.quest-list__container{
 				font-weight: bold;
 				font-size: 16px;
 				border-top-left-radius: 10px;
 				border-top-right-radius: 10px;
 				background-color: #fff;
-				padding-bottom: 10px;
-				padding-top: 10px;
+				padding: 15px 10px;
 				height: 315px;
-				li{
-					margin-bottom: 25px;
-					p{
-						margin-left: 20px;
+					.quets-list__list{
+						width: 100%;
+						height: 100%;
 					}
-				}
 			}
 			.quest-list__save-btn{
 				position: absolute;
@@ -235,18 +267,15 @@ header{
 			}
 		}
 		.links-list{
+			margin-bottom: 25px;
+			margin-right: 15px;
 
-			.links-list__header button{
-				opacity: 0.6;
-				outline: 0px;
-				cursor: pointer;
-				font-size: 16px;
-				border-radius: 10px;
-				border: 0px;
-				margin-bottom: 9px;
-				background-color: #ffffff;
-				padding: 24px 70px;
-			}
+			.links-list__header{
+				
+				span{
+					@include header_title;
+				}
+			} 
 			.links-list__container{
 				width:270px;
 				height: 375px;
@@ -259,7 +288,10 @@ header{
 					padding-top: 30px;
 					display: flex;
 					color:#D02B38;
-					padding-bottom: 31px;
+					&:hover{
+						opacity: .8;
+						cursor: pointer;
+					}
 				
 					img{
 						width: 14px;
@@ -269,9 +301,12 @@ header{
 					p{
 						font-size: 16px;
 						margin-left: 14px;
+						user-select: none;
 					}
 				}
 				.links-list__new-link-form{
+					margin-top: 30px;
+					display: none;
 
 					input[type="text"]{
 						height: 48px;
@@ -280,8 +315,10 @@ header{
 						border: 0px;
 						background: #F6F8F9;
 						margin-bottom: 15px;
+						padding-left: 20px;
+						font-weight: bold;
 						&::placeholder{
-							padding-left: 20px;
+							font-weight: normal;
 							font-size: 16px;
 						}
 					}
@@ -294,43 +331,69 @@ header{
 						border: 0px;
 						color: #ffffff;
 						background: #0E9347;
+						width: 100%;
 					}
 				}
 				.links-list__list-container{
 
 					.links-list__list{
 						margin-top: 32px;
+						height: 270px;
 						li{
 							margin-bottom: 20px;
-							display: flex;
+							display: flex;	
 							a{
 								color: #2A68BE;
+								white-space: nowrap;
+								max-width: 160px;						
 							}
 							img{
-								margin: auto 0;
-								width: 14px;
-								height: 14px;
-								margin-right: 15px;
+								margin-right: 5px;
+								margin-top: 2px;
+								width: 15px;
+								height: 15px;
 							}
 							&:last-child{
 								margin-bottom: 0px;
 							}
 						}
 					}
+					.links-hide{
+						height: 65px;
+					}
+					.mCSB_dragger{
+						height: 30px !important;
+					}
 				}
+			}
+		}
+		.notes{
+			margin-bottom: 25px;
+
+			.notes__header{
+				span{
+					@include header_title;
+					width: 280px;
+				}
+			}
+			.notes__content-container{
+				height: 375px;
+				width: 280px;
+				background: #ffffff;
+				border-radius: 10px;
+				padding: 25px;
 			}
 		}
 	}
 }
 .login-form{
-	margin-left: 31px;
-	padding-top: 38px;
-	padding-left: 25px;
-	padding-right: 35px;
+	padding: 38px 35px 0px 25px;
+	margin: 100px auto;
 	width: 380px;
 	height: 325px;
 	background: #ffffff;
 	border-radius: 10px;
+
 
 	.login-form__logo-wrapper{
 		text-align: center;
@@ -338,7 +401,7 @@ header{
 	}
 	.login-form__input-login {
 		position: relative;
-		padding-bottom: 15px;
+		padding-bottom: 10px;
 
 		input{
 			width: 320px;
@@ -346,6 +409,7 @@ header{
 			background: #F6F8F9;
 			border-radius: 5px;
 			height: 50px;
+			padding: 0px 50px;
 			&::placeholder{
 				padding-left: 50px;
 			}
@@ -354,6 +418,19 @@ header{
 			position: absolute;
 			left: 20px;
 			top: 16px;
+			height: 15px;
+			width: 15px;
+		}
+	}
+	.signup-link{
+		margin-bottom: 10px;
+    	text-align: center;
+
+		p{
+			font-size: 11px;
+			a{
+				font-size: 13px;
+			}
 		}
 	}
 	.login-form__button-login{
@@ -367,3 +444,112 @@ header{
 		}
 	}
 }
+.signup-form{
+	padding: 38px 35px 0px 25px;
+	margin: 100px auto;
+	width: 380px;
+	height: 450px;
+	background: #ffffff;
+	border-radius: 10px;
+
+	.signup-form__logo-wrapper{
+		text-align: center;
+		padding-bottom: 41px;
+	}
+	.signup-form__input-login {
+		position: relative;
+		padding-bottom: 10px;
+
+		input{
+			width: 320px;
+			border: 0px;
+			background: #F6F8F9;
+			border-radius: 5px;
+			height: 50px;
+			padding: 0px 50px;
+		}
+		img{
+			position: absolute;
+			left: 20px;
+			top: 16px;
+			height: 15px;
+			width: 15px;
+		}
+	}
+	.login-link{
+		margin-bottom: 10px;
+    	text-align: center;
+
+		p{
+			font-size: 11px;
+			a{
+				font-size: 13px;
+			}
+		}
+	}
+	.signup-form__button-login{
+		input{
+			width: 100%;
+			padding: 15px 0;
+			font-size: 20px;
+			text-align: center;
+			color: #ffffff;
+			border: 0px;
+			border-radius: 10px;
+			background: #0E9347;
+		}
+	}
+}
+.modal-container{
+	width: 100%;
+	height: 100%;
+	background: rgba(214, 214, 214, 0.5);
+	position: fixed;
+	top: 0;
+	left: 0;
+	z-index: 2;
+	display: none;
+	// display: flex;
+	// justify-content: center;
+	// align-items: center;
+
+	.modal-wrapper{
+		background: #ffffff;
+		border-radius: 10px;
+		width: 300px;
+		height: 150px;
+
+		.modal-content-container{
+			width: 100%;
+			height: 70%;
+			padding: 50px 20px 10px 20px;
+			text-align: center;
+			font-weight: bold;
+		}
+		.modal-buttons-container{
+			width: 100%;
+			height: 30%;
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+
+			.modal-btn{
+				width: 30px;
+				height: 30px;
+
+				&:hover{
+					opacity: .8;
+					cursor: pointer;
+				}
+			}
+			.btn-false{
+				background: url("../images/icon-x.svg");
+				margin-right: 50px;
+			}
+			.btn-true{
+				background: url("../images/icon-checkmark.svg");
+			}
+		}
+	}
+}
+

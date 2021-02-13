@@ -1,3 +1,12 @@
+<?php
+	if( isset($_COOKIE['loggeduser']) )
+	{
+		$user_id = $_COOKIE['loggeduser'];
+	} else
+	{
+		header('Location: ./api/login.php');
+	}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,7 +35,7 @@
 			</div>
 		</div>
 		<div class="logout-btn">
-			<img src="images/logout.png" alt="">
+			<a href="./api/logout.php"><img src="images/logout.png" alt=""></a>
 		</div>
 	</header>
 	<main class="site-content-wrapper">
@@ -52,16 +61,15 @@
 				</div>
 			</div>
 			<div class="quest-list">
-				<div class="quest-list__header"><input type="text" name="addNewTask" id="addNewTask"><img src="images/more.png" alt=""></div>
+				<div class="quest-list__header"><div class="quest-name">Павел</div><img src="images/pen.png" alt=""></div>
 				<div class="quest-list__container">
-					<ul>
-						<li><p class="text-decoration">Сделать логотип</p></li>
-						<li><p class="text-decoration">Сделать шапку для сайта</p></li>
-						<li><p>Отрисовать баннер</p></li>
-						<li><p class="text-decoration">Сделать логотип</p></li>
-						<li><p>Сделать шапку для сайта</p></li>
-						<li><p class="text-decoration">Отрисовать баннер</p></li>
-					</ul>
+					<div class="quets-list__list mCustomScrollbar" data-mcs-theme="dark"">
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sed consequuntur! Odio, commodi maxime. Sed deserunt ducimus accusamus debitis harum. Explicabo sint, asperiores laborum adipisci vero inventore dignissimos placeat quod.</p>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sed consequuntur! Odio, commodi maxime. Sed deserunt ducimus accusamus debitis harum. Explicabo sint, asperiores laborum adipisci vero inventore dignissimos placeat quod.</p>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sed consequuntur! Odio, commodi maxime. Sed deserunt ducimus accusamus debitis harum. Explicabo sint, asperiores laborum adipisci vero inventore dignissimos placeat quod.</p>
+						<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum, sed consequuntur! Odio, commodi maxime. Sed deserunt ducimus accusamus debitis harum. Explicabo sint, asperiores laborum adipisci vero inventore dignissimos placeat quod.</p>
+
+					</div>
 				</div>
 				<div class="quest-list__save-btn">
 					<button>Сохранить</button>
@@ -88,24 +96,6 @@
 			</div>
 		</div>
 	</main>
-	<!-- <div class="login-form">
-		<div class="login-form__logo-wrapper">
-			<img src="images/logo-task-list.png" alt="">
-		</div>
-		<form action="" method="get">
-			<div class="login-form__input-login">
-				<input type="text" placeholder="Login" name="login">
-				<img src="images/profile.png" alt="">
-			</div>
-			<div class="login-form__input-login">
-				<input type="text" placeholder="Password" name="password">
-				<img src="images/pen.png" alt="">
-			</div>
-			<div class="login-form__button-login">
-				<input type="submit" value="Войти">
-			</div>	
-		</form>
-	</div> -->
 	<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script src="js/libraries/jquery.mousewheel.min.js"></script>

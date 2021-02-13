@@ -1,9 +1,22 @@
+//datepicker initialization
 $(document).ready(() => {
 	$( "#datepicker" ).datepicker();
+});
+
+$(".post").click(() => {
+	$(".post p").text(() => {
+		return $(".post p").text() == "Добавить" ? "Скрыть" : "Добавить";
+	})
+	$(".links-list__new-link-form").toggle(500);
+	$(".links-list__list").toggleClass('links-hide');
+});
+
+$(".notes__content-container").blur(() => {
+	console.log('unfocus')
 })
 
+//real time clock
 const clock = document.querySelector('.clock');
-
 const showCurrentTime = () => {
 	let date = new Date();
 	let h = date.getHours().toString();
@@ -21,15 +34,19 @@ const showCurrentTime = () => {
 	let currentTime = h + ':' + m;
 	clock.textContent = currentTime;
 }
- 
 setInterval(showCurrentTime, 100);
 
-const trash = document.querySelectorAll('.quest-item__delete-btn');
-function deleteQuest(event) {
-	event.target.parentElement.remove();
-}
-for(var i = 0; i <= trash.length; i++){
-	trash[i].addEventListener('click', deleteQuest);
-}
+// modal window functions
 
-
+const modalAnswer = answerText => {
+	$('.modal-container').css({"display": "flex", "justify-content": "center", "align-items": "center"});
+	$(".modal-content-container").text(answerText);
+	$(".btn-false").click(() => {
+		$('.modal-container').hide();
+		return false;
+	})
+	$(".btn-true").click(() => {
+		$('.modal-container').hide();
+		return true;
+	})
+}
