@@ -18,7 +18,8 @@
         {
             if( password_verify($data['password'], $user->password) ) 
             {
-                setcookie('loggeduser', $user->id, time()+60*60*24*30, '/');
+                setcookie('user_id', $user->id, time()+60*60*24*30, '/');
+                setcookie('user_name', $user->login, time()+60*60*24*30, '/');
                     header('Location: ../');
                 
                 
